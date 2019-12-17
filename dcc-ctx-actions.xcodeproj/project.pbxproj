@@ -12,9 +12,11 @@
 		30049C7723A3EFF800C48B28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30049C7623A3EFF800C48B28 /* Assets.xcassets */; };
 		30049C7A23A3EFF800C48B28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30049C7823A3EFF800C48B28 /* Main.storyboard */; };
 		30049C8623A3EFF800C48B28 /* dcc_ctx_actionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30049C8523A3EFF800C48B28 /* dcc_ctx_actionsTests.swift */; };
-		30049C9123A3F10B00C48B28 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30049C9023A3F10B00C48B28 /* Utils.swift */; };
-		30049C9323A3F1B500C48B28 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30049C9223A3F1B500C48B28 /* App.swift */; };
-		304F280423A7D7A800FC34CE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304F280323A7D7A800FC34CE /* Constants.swift */; };
+		304F280C23A93DA200FC34CE /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304F280B23A93DA200FC34CE /* FinderSync.swift */; };
+		304F281123A93DA200FC34CE /* extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 304F280923A93DA200FC34CE /* extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		304F281623A93E3600FC34CE /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30049C9223A3F1B500C48B28 /* App.swift */; };
+		304F281723A93E3600FC34CE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304F280323A7D7A800FC34CE /* Constants.swift */; };
+		304F281823A93E3600FC34CE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30049C9023A3F10B00C48B28 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,7 +27,28 @@
 			remoteGlobalIDString = 30049C6E23A3EFF700C48B28;
 			remoteInfo = "dcc-ctx-actions";
 		};
+		304F280F23A93DA200FC34CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30049C6723A3EFF700C48B28 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 304F280823A93DA200FC34CE;
+			remoteInfo = extension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		304F281523A93DA200FC34CE /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				304F281123A93DA200FC34CE /* extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		30049C6F23A3EFF700C48B28 /* dcc-ctx-actions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dcc-ctx-actions.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,6 +64,10 @@
 		30049C9023A3F10B00C48B28 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		30049C9223A3F1B500C48B28 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		304F280323A7D7A800FC34CE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		304F280923A93DA200FC34CE /* extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = extension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		304F280B23A93DA200FC34CE /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
+		304F280D23A93DA200FC34CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		304F280E23A93DA200FC34CE /* extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = extension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +85,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		304F280623A93DA200FC34CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -66,6 +100,7 @@
 			children = (
 				30049C7123A3EFF700C48B28 /* dcc-ctx-actions */,
 				30049C8423A3EFF800C48B28 /* dcc-ctx-actionsTests */,
+				304F280A23A93DA200FC34CE /* extension */,
 				30049C7023A3EFF700C48B28 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -75,6 +110,7 @@
 			children = (
 				30049C6F23A3EFF700C48B28 /* dcc-ctx-actions.app */,
 				30049C8123A3EFF800C48B28 /* dcc-ctx-actionsTests.xctest */,
+				304F280923A93DA200FC34CE /* extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,9 +124,6 @@
 				30049C7823A3EFF800C48B28 /* Main.storyboard */,
 				30049C7B23A3EFF800C48B28 /* Info.plist */,
 				30049C7C23A3EFF800C48B28 /* dcc_ctx_actions.entitlements */,
-				30049C9023A3F10B00C48B28 /* Utils.swift */,
-				30049C9223A3F1B500C48B28 /* App.swift */,
-				304F280323A7D7A800FC34CE /* Constants.swift */,
 			);
 			path = "dcc-ctx-actions";
 			sourceTree = "<group>";
@@ -104,6 +137,19 @@
 			path = "dcc-ctx-actionsTests";
 			sourceTree = "<group>";
 		};
+		304F280A23A93DA200FC34CE /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				30049C9023A3F10B00C48B28 /* Utils.swift */,
+				30049C9223A3F1B500C48B28 /* App.swift */,
+				304F280323A7D7A800FC34CE /* Constants.swift */,
+				304F280B23A93DA200FC34CE /* FinderSync.swift */,
+				304F280D23A93DA200FC34CE /* Info.plist */,
+				304F280E23A93DA200FC34CE /* extension.entitlements */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -114,10 +160,12 @@
 				30049C6B23A3EFF700C48B28 /* Sources */,
 				30049C6C23A3EFF700C48B28 /* Frameworks */,
 				30049C6D23A3EFF700C48B28 /* Resources */,
+				304F281523A93DA200FC34CE /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				304F281023A93DA200FC34CE /* PBXTargetDependency */,
 			);
 			name = "dcc-ctx-actions";
 			productName = "dcc-ctx-actions";
@@ -142,6 +190,23 @@
 			productReference = 30049C8123A3EFF800C48B28 /* dcc-ctx-actionsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		304F280823A93DA200FC34CE /* extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 304F281223A93DA200FC34CE /* Build configuration list for PBXNativeTarget "extension" */;
+			buildPhases = (
+				304F280523A93DA200FC34CE /* Sources */,
+				304F280623A93DA200FC34CE /* Frameworks */,
+				304F280723A93DA200FC34CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = extension;
+			productName = extension;
+			productReference = 304F280923A93DA200FC34CE /* extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -158,6 +223,9 @@
 					30049C8023A3EFF800C48B28 = {
 						CreatedOnToolsVersion = 11.3;
 						TestTargetID = 30049C6E23A3EFF700C48B28;
+					};
+					304F280823A93DA200FC34CE = {
+						CreatedOnToolsVersion = 11.3;
 					};
 				};
 			};
@@ -176,6 +244,7 @@
 			targets = (
 				30049C6E23A3EFF700C48B28 /* dcc-ctx-actions */,
 				30049C8023A3EFF800C48B28 /* dcc-ctx-actionsTests */,
+				304F280823A93DA200FC34CE /* extension */,
 			);
 		};
 /* End PBXProject section */
@@ -197,6 +266,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		304F280723A93DA200FC34CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -204,11 +280,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				304F280423A7D7A800FC34CE /* Constants.swift in Sources */,
 				30049C7523A3EFF700C48B28 /* ViewController.swift in Sources */,
-				30049C9323A3F1B500C48B28 /* App.swift in Sources */,
 				30049C7323A3EFF700C48B28 /* AppDelegate.swift in Sources */,
-				30049C9123A3F10B00C48B28 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +293,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		304F280523A93DA200FC34CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				304F280C23A93DA200FC34CE /* FinderSync.swift in Sources */,
+				304F281623A93E3600FC34CE /* App.swift in Sources */,
+				304F281723A93E3600FC34CE /* Constants.swift in Sources */,
+				304F281823A93E3600FC34CE /* Utils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -227,6 +311,11 @@
 			isa = PBXTargetDependency;
 			target = 30049C6E23A3EFF700C48B28 /* dcc-ctx-actions */;
 			targetProxy = 30049C8223A3EFF800C48B28 /* PBXContainerItemProxy */;
+		};
+		304F281023A93DA200FC34CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 304F280823A93DA200FC34CE /* extension */;
+			targetProxy = 304F280F23A93DA200FC34CE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -358,6 +447,7 @@
 		30049C8B23A3EFF800C48B28 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "dcc-ctx-actions/dcc_ctx_actions.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -376,6 +466,7 @@
 		30049C8C23A3EFF800C48B28 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "dcc-ctx-actions/dcc_ctx_actions.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -433,6 +524,44 @@
 			};
 			name = Release;
 		};
+		304F281323A93DA200FC34CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = extension/extension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = extension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "vectorworks.dcc-ctx-actions.extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		304F281423A93DA200FC34CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = extension/extension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = extension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "vectorworks.dcc-ctx-actions.extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -459,6 +588,15 @@
 			buildConfigurations = (
 				30049C8E23A3EFF800C48B28 /* Debug */,
 				30049C8F23A3EFF800C48B28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		304F281223A93DA200FC34CE /* Build configuration list for PBXNativeTarget "extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				304F281323A93DA200FC34CE /* Debug */,
+				304F281423A93DA200FC34CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

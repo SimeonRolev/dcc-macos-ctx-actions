@@ -16,6 +16,12 @@ enum AppError: Error {
     case UnknownError
 }
 
+enum SelectionType: String {
+    case VectorworksFile
+    case PhotogrametryFile
+    case OtherFile
+}
+
 class App {
     var debug: Bool = true
     
@@ -24,7 +30,7 @@ class App {
     var cachesDir: String = ""
 
     var syncedDirs: [String] = []
-    var selectedFiles: [String] = []
+    var selectedFiles: [URL] = []
     
     func setUp() throws {
         if debug {
@@ -71,9 +77,20 @@ class App {
             self.syncedDirs.append(dropboxFolder)
         }
     }
+    
+    func getSelectionType () -> SelectionType {
+        if self.selectedFiles.allSatisfy({ Utils.getExtension(url: $0) == SelectionType.VectorworksFile }) {
+            return SelectionType.VectorworksFile
+        }
+        if self.selectedFiles.allSatisfy({ Utils.isPhotogramType(url: $0) }) {
+            return SelectionType.PhotogrametryFile
+        }
+        
+        return SelectionType.OtherFile
+    }
 
     func executeAction (action: String) {
-        let data: [String: Any] = ["action": action, "local_paths": self.selectedFiles]
+        let data: [String: Any] = ["action": action, "local_paths": self.selectedFiles.map{ $0.absoluteString }]
         Utils.post(url: self.apiURL, data: data)
     }
 }
