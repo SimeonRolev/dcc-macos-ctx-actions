@@ -63,20 +63,20 @@ class Utils {
     }
     
     static func getExtension (url: URL) -> SelectionType {
-        switch url.pathExtension {
+        switch url.pathExtension.lowercased() {
             case "vwx":
                 return SelectionType.VectorworksFile
-            case "jpg":
+            case "tiff", "tif", "svg", "png", "jpg", "jpeg", "ico", "gif", "bmp":
                 return SelectionType.PhotogrametryFile
             default:
                 return SelectionType.OtherFile
         }
     }
-    
+
     static func isPhotogramType (url: URL) -> Bool {
         return (
-            Utils.getExtension(url: url) == SelectionType.PhotogrametryFile ||
-            (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory ?? false
+            (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory ?? false ||
+            Utils.getExtension(url: url) == SelectionType.PhotogrametryFile
         ) ? true : false
     }
 }
