@@ -12,11 +12,13 @@
 		30049C7723A3EFF800C48B28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30049C7623A3EFF800C48B28 /* Assets.xcassets */; };
 		30049C7A23A3EFF800C48B28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30049C7823A3EFF800C48B28 /* Main.storyboard */; };
 		30049C8623A3EFF800C48B28 /* dcc_ctx_actionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30049C8523A3EFF800C48B28 /* dcc_ctx_actionsTests.swift */; };
+		30131F8C23C8CFFF0050712E /* DirectoryObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30131F8B23C8CFFF0050712E /* DirectoryObserver.swift */; };
+		302729EE23C88BF5002E4F82 /* ProcessObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302729ED23C88BF5002E4F82 /* ProcessObserver.swift */; };
 		304F280C23A93DA200FC34CE /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304F280B23A93DA200FC34CE /* FinderSync.swift */; };
 		304F281123A93DA200FC34CE /* extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 304F280923A93DA200FC34CE /* extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		304F281623A93E3600FC34CE /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30049C9223A3F1B500C48B28 /* App.swift */; };
-		304F281723A93E3600FC34CE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304F280323A7D7A800FC34CE /* Constants.swift */; };
 		304F281823A93E3600FC34CE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30049C9023A3F10B00C48B28 /* Utils.swift */; };
+		304F281A23ABCD9C00FC34CE /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 304F281923ABCD9C00FC34CE /* Icons.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,11 +65,13 @@
 		30049C8723A3EFF800C48B28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30049C9023A3F10B00C48B28 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		30049C9223A3F1B500C48B28 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
-		304F280323A7D7A800FC34CE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		30131F8B23C8CFFF0050712E /* DirectoryObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryObserver.swift; sourceTree = "<group>"; };
+		302729ED23C88BF5002E4F82 /* ProcessObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessObserver.swift; sourceTree = "<group>"; };
 		304F280923A93DA200FC34CE /* extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = extension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		304F280B23A93DA200FC34CE /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
 		304F280D23A93DA200FC34CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		304F280E23A93DA200FC34CE /* extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = extension.entitlements; sourceTree = "<group>"; };
+		304F281923ABCD9C00FC34CE /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,8 +146,10 @@
 			children = (
 				30049C9023A3F10B00C48B28 /* Utils.swift */,
 				30049C9223A3F1B500C48B28 /* App.swift */,
-				304F280323A7D7A800FC34CE /* Constants.swift */,
+				302729ED23C88BF5002E4F82 /* ProcessObserver.swift */,
 				304F280B23A93DA200FC34CE /* FinderSync.swift */,
+				30131F8B23C8CFFF0050712E /* DirectoryObserver.swift */,
+				304F281923ABCD9C00FC34CE /* Icons.xcassets */,
 				304F280D23A93DA200FC34CE /* Info.plist */,
 				304F280E23A93DA200FC34CE /* extension.entitlements */,
 			);
@@ -270,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				304F281A23ABCD9C00FC34CE /* Icons.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,9 +305,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				304F280C23A93DA200FC34CE /* FinderSync.swift in Sources */,
+				30131F8C23C8CFFF0050712E /* DirectoryObserver.swift in Sources */,
 				304F281623A93E3600FC34CE /* App.swift in Sources */,
-				304F281723A93E3600FC34CE /* Constants.swift in Sources */,
 				304F281823A93E3600FC34CE /* Utils.swift in Sources */,
+				302729EE23C88BF5002E4F82 /* ProcessObserver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,7 +389,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -435,7 +443,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;

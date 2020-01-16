@@ -9,21 +9,7 @@
 import Foundation
 import AppKit
 
-class Utils {
-    @discardableResult
-    static func getDCCProcessPathComponents() -> [String]? {
-        let workspace = NSWorkspace.shared
-        let applications = workspace.runningApplications
-        
-        for app in applications {
-            let path = app.executableURL?.path ?? ""
-            if path.contains("Vectorworks Cloud Services") {
-                return app.executableURL?.pathComponents ?? []
-            }
-        }
-        return nil
-    }
-    
+class Utils {    
     static func fileExists(path: String, isDirectory: UnsafeMutablePointer<ObjCBool>?) -> Bool {
         let fileManager = FileManager.default
         return fileManager.fileExists(atPath: path, isDirectory: isDirectory)
@@ -62,6 +48,10 @@ class Utils {
         task.resume()
     }
     
+    static func isFolder(url: URL) -> Bool {
+        return (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory ?? false
+    }
+    
     static func getExtension (url: URL) -> SelectionType {
         switch url.pathExtension.lowercased() {
             case "vwx":
@@ -75,7 +65,7 @@ class Utils {
 
     static func isPhotogramType (url: URL) -> Bool {
         return (
-            (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory ?? false ||
+            Utils.isFolder(url: url) ||
             Utils.getExtension(url: url) == SelectionType.PhotogrametryFile
         ) ? true : false
     }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FinderSync
 
 enum AppError: Error {
     case appNotRunning
@@ -23,26 +24,24 @@ enum SelectionType: String {
 }
 
 class App {
-    var debug: Bool = true
+    var debug: Bool = false
     
-    var name: String = ""
     var apiURL: String = ""
     var cachesDir: String = ""
-
     var syncedDirs: [String] = []
     var selectedFiles: [URL] = []
     
-    func setUp() throws {
+    func setUp(pathComponents: [String]) throws {
+        var name = ""
         if debug {
-            self.name = "Vectorworks Cloud Services devel"
+            // Directly give the name of the running process, because wo dont know where it's running from
+            name = "Vectorworks Cloud Services devel"
         } else {
-            guard let pathComponents = Utils.getDCCProcessPathComponents() else {
-                throw AppError.appNotRunning
-            }
-            self.name = pathComponents.last!
+            if pathComponents.isEmpty { throw AppError.appNotRunning }
+            name = pathComponents.last!
         }
         
-        self.cachesDir = "/Users/\(NSUserName())/Library/Caches/\(self.name)"
+        self.cachesDir = "/Users/\(NSUserName())/Library/Caches/\(name)"
         
         // Api
         let portFilePath = "\(self.cachesDir)/port.txt"
@@ -51,31 +50,6 @@ class App {
         }
         
         self.apiURL = "http://127.0.0.1:\(String(port))/context_action"
-        
-        // Synced folders
-        let activeSessionFilePath = "\(self.cachesDir)/active_session.json"
-        guard let jsonString = Utils.readFile(path: activeSessionFilePath) else {
-            throw AppError.fileReadFailed(fn: activeSessionFilePath)
-        }
-        
-        guard let data: Data = jsonString.data(using: .utf8) else {
-            throw AppError.fileContentsNotParsed(fn: activeSessionFilePath)
-        }
-        
-        guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject] else {
-            throw AppError.fileContentsNotParsed(fn: activeSessionFilePath)
-        }
-        
-        // Root dir - required
-        guard let rootFolder = json["rootFolder"] as? String, let _ = Utils.fileExists(path: rootFolder, isDirectory: nil) as Bool? else {
-            throw AppError.rootFolderNotFound
-        }
-        self.syncedDirs.append(rootFolder)
-        
-        // Dropbox dir - optional
-        if let dropboxFolder = json["dropboxFolder"] as? String, let _ = Utils.fileExists(path: dropboxFolder, isDirectory: nil) as Bool? {
-            self.syncedDirs.append(dropboxFolder)
-        }
     }
     
     func getSelectionType () -> SelectionType {
@@ -90,7 +64,15 @@ class App {
     }
 
     func executeAction (action: String) {
-        let data: [String: Any] = ["action": action, "local_paths": self.selectedFiles.map{ $0.absoluteString }]
+        let local_paths = self.selectedFiles.map {
+            Utils.isFolder(url: $0) && $0.path.last != "/"
+                ? "\($0.path)/"
+                : $0.path
+        }
+        let data: [String: Any] = [
+            "action": action,
+            "local_paths": local_paths
+        ]
         Utils.post(url: self.apiURL, data: data)
     }
 }
