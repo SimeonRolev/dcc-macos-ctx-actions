@@ -18,7 +18,8 @@ enum AppError: Error {
 
 enum SelectionType: String {
     case VectorworksFile
-    case PhotogrametryFile
+    case Photogrammetry
+    case ImageFile
     case OtherFile
 }
 
@@ -82,8 +83,12 @@ class App {
         if self.selectedFiles.allSatisfy({ Utils.getExtension(url: $0) == SelectionType.VectorworksFile }) {
             return SelectionType.VectorworksFile
         }
-        if self.selectedFiles.allSatisfy({ Utils.isPhotogramType(url: $0) }) {
-            return SelectionType.PhotogrametryFile
+        if self.selectedFiles.allSatisfy({ Utils.getExtension(url: $0) == SelectionType.ImageFile }) {
+            return SelectionType.ImageFile
+        }
+        let directories = self.selectedFiles.filter { return (try? $0.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory ?? false }
+        if directories.count == 1 && self.selectedFiles.count == 1 || self.selectedFiles.allSatisfy({ Utils.getExtension(url: $0) == SelectionType.ImageFile }) {
+            return SelectionType.Photogrammetry
         }
         
         return SelectionType.OtherFile

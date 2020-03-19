@@ -45,14 +45,19 @@ class FinderSync: FIFinderSync {
             menu.setSubmenu(submenu, for: mainDropdown)
             
             switch selectionType {
-                case .VectorworksFile:
-                    submenu.addItem(withTitle: "Export PDF", action: #selector(pdf_export(_:)), keyEquivalent: "")
-                    submenu.addItem(withTitle: "Export 3D model", action: #selector(distill(_:)), keyEquivalent: "")
-                    submenu.addItem(NSMenuItem.separator())
-                case .PhotogrametryFile:
-                    submenu.addItem(withTitle: "Photos to 3D model", action: #selector(photogram(_:)), keyEquivalent: "")
-                    submenu.addItem(NSMenuItem.separator())
-                default: break
+            case .VectorworksFile:
+                submenu.addItem(withTitle: "Export PDF", action: #selector(pdf_export(_:)), keyEquivalent: "")
+                submenu.addItem(withTitle: "Export 3D model", action: #selector(distill(_:)), keyEquivalent: "")
+                submenu.addItem(NSMenuItem.separator())
+            case .ImageFile:
+                submenu.addItem(withTitle: "Photos to 3D model", action: #selector(photogram(_:)), keyEquivalent: "")
+                submenu.addItem(withTitle: "Stylize image", action: #selector(stylize(_:)), keyEquivalent: "")
+                submenu.addItem(withTitle: "Upsample image", action: #selector(upsample(_:)), keyEquivalent: "")
+                submenu.addItem(NSMenuItem.separator())
+            case .Photogrammetry:
+                submenu.addItem(withTitle: "Photos to 3D model", action: #selector(photogram(_:)), keyEquivalent: "")
+                submenu.addItem(NSMenuItem.separator())
+            default: break
             }
 
             submenu.addItem(withTitle: "Shareable link", action: #selector(link(_:)), keyEquivalent: "")
@@ -66,4 +71,6 @@ class FinderSync: FIFinderSync {
     @IBAction func distill(_: Any) { self.app.executeAction(action: "DISTILL") }
     @IBAction func photogram(_: Any) { self.app.executeAction(action: "PHOTOGRAM") }
     @IBAction func link(_: Any) { self.app.executeAction(action: "LINK") }
+    @IBAction func stylize(_: Any) { self.app.executeAction(action: "STYLIZE") }
+    @IBAction func upsample(_: Any) { self.app.executeAction(action: "UPSAMPLE") }
 }
