@@ -10,11 +10,12 @@ import Foundation
 import AppKit
 
 class ProcessObserver {
+    let debug = false
+    
     var processObservers = [NSKeyValueObservation]()
     var directoryObservers = [DirectoryObserver]()
     
     var isRunning: Bool = false
-    let app = App()
     
     static func isDCC (_ app: NSRunningApplication) -> Bool {
         return (app.executableURL?.path ?? "").contains("Vectorworks Cloud Services")
@@ -27,8 +28,8 @@ class ProcessObserver {
         }
         if kind == NSKeyValueObservedChange.Kind.insertion {
             do {
-                try self.app.setUp(pathComponents: app.executableURL?.pathComponents ?? [])
-                self.directoryObservers = [DirectoryObserver(cachesDir: self.app.cachesDir)]
+                let cachesDir = try App.getCachesDir(pathComponents: app.executableURL?.pathComponents ?? [])
+                self.directoryObservers = [DirectoryObserver(cachesDir: cachesDir)]
                 self.isRunning = true
             } catch {
                 self.clear()
@@ -43,6 +44,14 @@ class ProcessObserver {
     }
     
     func listen () {
+        // Debug
+        if debug {
+            let cachesDir = try! App.getCachesDir(pathComponents: [], debug: true)
+            self.directoryObservers = [DirectoryObserver(cachesDir: cachesDir)]
+            self.isRunning = true
+            return
+        }
+        
         // Init
         for app in NSWorkspace.shared.runningApplications {
             self.setPathComponents(app: app, kind: NSKeyValueObservedChange.Kind.insertion)

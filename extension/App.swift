@@ -13,7 +13,9 @@ enum AppError: Error {
     case appNotRunning
     case fileReadFailed(fn: String)
     case fileContentsNotParsed(fn: String)
+    case couldNotParseProcessPath
     case rootFolderNotFound
+    case portNotFound
     case UnknownError
 }
 
@@ -24,32 +26,28 @@ enum SelectionType: String {
 }
 
 class App {
-    var debug: Bool = false
-    
-    var apiURL: String = ""
-    var cachesDir: String = ""
-    var syncedDirs: [String] = []
+    var port = ""
     var selectedFiles: [URL] = []
     
-    func setUp(pathComponents: [String]) throws {
+    var apiURL: String {
+        get { return "http://127.0.0.1:\(self.port)/context_action" }
+    }
+    
+    static func getCachesDir(pathComponents: [String], debug: Bool = false) throws -> String {
         var name = ""
         if debug {
-            // Directly give the name of the running process, because wo dont know where it's running from
+            // Directly give the name of the running process, because we dont know where it's running from
             name = "Vectorworks Cloud Services devel"
         } else {
-            if pathComponents.isEmpty { throw AppError.appNotRunning }
+            if pathComponents.isEmpty { throw AppError.couldNotParseProcessPath }
             name = pathComponents.last!
         }
         
-        self.cachesDir = "/Users/\(NSUserName())/Library/Caches/\(name)"
-        
-        // Api
-        let portFilePath = "\(self.cachesDir)/port.txt"
-        guard let port = Utils.readFile(path: portFilePath) else {
-            throw AppError.fileReadFailed(fn: portFilePath)
-        }
-        
-        self.apiURL = "http://127.0.0.1:\(String(port))/context_action"
+        return "/Users/\(NSUserName())/Library/Caches/\(name)"
+    }
+    
+    func setPort (port: String) {
+        self.port = port
     }
     
     func getSelectionType () -> SelectionType {

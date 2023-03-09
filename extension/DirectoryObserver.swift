@@ -15,6 +15,8 @@ class DirectoryObserver {
     private let cachesDir: String
     private var syncedDirs: [String] = []
     private var isFound: Bool = false
+    
+    var app = App()
 
     init(cachesDir: String) {
         self.cachesDir = cachesDir
@@ -66,6 +68,12 @@ class DirectoryObserver {
         guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject] else {
             throw AppError.fileContentsNotParsed(fn: activeSessionFilePath)
         }
+        
+        // Port
+        guard let port = json["port"] as? Int else {
+            throw AppError.portNotFound
+        }
+        self.app.setPort(port: String(port))
         
         // Root dir - required
         self.syncedDirs.removeAll()

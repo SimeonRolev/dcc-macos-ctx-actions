@@ -11,8 +11,11 @@ import FinderSync
 
 class FinderSync: FIFinderSync {
     let observer = ProcessObserver()
-    var app: App {
-        get { return self.observer.app }
+    var app: App! {
+        get {
+            return self.observer.directoryObservers.count > 0
+                ? self.observer.directoryObservers[0].app : nil
+        }
     }
     
     override init() {
